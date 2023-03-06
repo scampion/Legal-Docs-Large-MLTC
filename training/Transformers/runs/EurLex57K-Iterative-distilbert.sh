@@ -4,7 +4,8 @@ cased=0
 dataset_name="EURLEX57K-iterative"
 dataset_path='../../datasets/EurLex57K.csv'
 dataset_split_path='../../Iterative_Split/EurLex57K/'
-pretrained_model_name="/home/zein/EurLex/LM-finetune/DistillBERT-LM-finetuned-EurLex"
+pretrained_model_name="/home/scampion/src/Legal-Docs-Large-MLTC/training/LM-finetuning/lm-finetuned/jrc_en/distilbert"
+# pretrained_model_name="/home/zein/EurLex/LM-finetune/DistillBERT-LM-finetuned-EurLex"
 model_type="distilbert"
 
 TOTAL_CYCLES=9

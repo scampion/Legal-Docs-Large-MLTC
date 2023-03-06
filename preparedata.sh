@@ -12,12 +12,13 @@ while IFS= read -r url
 do
   echo "$url"
   filename="$(basename -- $url)"
-  wget -P tmp/ $url
+  wget -nc -P tmp/ $url
   tar  -C tmp/ -xzvf tmp/$filename
 done < "$input"
 
 echo "Download and prepare eurovoc data and eurovoc analysis tool ..."
-wget http://publications.europa.eu/resource/distribution/eurovoc/20190329-1/zip/eurovoc_dtd/eurovoc_xml.zip -O tmp/eurovoc_xml.zip
+wget -nc http://publications.europa.eu/resource/cellar/fb5bc6f8-a143-11ed-b508-01aa75ed71a1.0001.07/DOC_1&fileName=eurovoc_xml.zip -O tmp/eurovoc_xml.zip
+https://op.europa.eu/o/opportal-service/euvoc-download-handler?cellarURI=http%3A%2F%2Fpublications.europa.eu%2Fresource%2Fcellar%2Ffb5bc6f8-a143-11ed-b508-01aa75ed71a1.0001.07%2FDOC_1&fileName=eurovoc_xml.zip
 unzip tmp/eurovoc_xml.zip -d tmp/EuroVoc
 python prepare_eurovoc.py
 
@@ -34,12 +35,12 @@ python prepare_jrc_data.py --languages "en,de,fr" \
 
 ################# EURLEX57K ####################
 echo "Download and prepare EURLEX57K dataset"
-wget -O tmp/datasets.zip http://nlp.cs.aueb.gr/software_and_datasets/EURLEX57K/datasets.zip
+wget -nc -O tmp/datasets.zip http://nlp.cs.aueb.gr/software_and_datasets/EURLEX57K/datasets.zip
 unzip tmp/datasets.zip -d tmp/EURLEX57K
 
 python prepare_eurlex57k_data.py --dataset_path "./tmp/EURLEX57K/dataset/" --save_path "datasets/EurLex57K.csv"
 
 echo "Delete tmp directory ..."
-rm -r tmp
+#rm -r tmp
 
 echo "Done!"

@@ -55,7 +55,7 @@ class TransformersBaseTokenizer(BaseTokenizer):
 
     def __init__(self, pretrained_tokenizer: PreTrainedTokenizer, model_type='bert', maxlen=100000, **kwargs):
         self._pretrained_tokenizer = pretrained_tokenizer
-        self.max_seq_len = min(pretrained_tokenizer.max_len, maxlen)
+        self.max_seq_len = min(pretrained_tokenizer.model_max_length, maxlen)
         self.model_type = model_type
 
     def __call__(self, *args, **kwargs):

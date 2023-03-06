@@ -132,6 +132,13 @@ transformer_processor = getTransformerProcecssor(tokenizer_class, pretrained_mod
 pad_idx = transformer_processor[1].vocab.tokenizer.pad_token_id
 
 # prepare classification data
+print(df.head())
+print(df.info())
+print(df[TEXT_FIELD].head())
+print(df[LABEL_COL_NAME].head())
+data_clas = TextList.from_df(df, processor=transformer_processor, cols=TEXT_FIELD).split_by_idxs(train_idx, valid_idx).label_from_df(cols=LABEL_COL_NAME, label_delim=LABEL_DELIM)
+print('Done')
+
 data_clas = (TextList.from_df(df, processor=transformer_processor, cols=TEXT_FIELD)
              .split_by_idxs(train_idx, valid_idx)
              .label_from_df(cols=LABEL_COL_NAME, label_delim=LABEL_DELIM)
